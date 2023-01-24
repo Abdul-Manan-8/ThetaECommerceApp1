@@ -1,0 +1,155 @@
+﻿@model IEnumerable<ThetaECommerceApp.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.SeoData)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.MetaData)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.Image)*@
+                    @if (string.IsNullOrEmpty(item.Image))
+                    {
+                        <img src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg" class="img-thumbnail" style="max-height:100px" alt="" />
+                    }
+                    else
+                    {
+                        <img src="@item.Image" class="img-thumbnail" style="max-height:100px" alt="" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.ModifiedBy)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.ModifiedDate)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.SeoData)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.MetaData)
+            </td>*@
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="bi bi-pencil"> Edit</i></a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm"><i class="bi bi-book"> Details</i></a> |
+                    @*<a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"><i class="bi bi-trash"> Delete</i></a>*@
+                    <a href="#" data-pid="@item.Id" class="btn btn-danger btn-sm deletebutton"><i class="bi bi-trash"></i> Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section scripts{
+
+    <script>
+
+        $(function () {
+
+            $('.deletebutton').click(function () {
+
+                var pid = $(this).data('pid');
+                //var row = $(this).parent().parent();
+
+                //alert(pid);
+
+                $.ajax({
+
+                    url: '/products/deleteproduct',
+                    type: 'post',
+                    data: {
+                        id = pid
+                    },
+
+                    success: function (response) {
+                        alert(response.d);
+                        row.fadeOut(3000);
+                    },
+                    failure: function (response) {
+                        alert(response.d);
+                    }
+
+                    //complete: function(r) {
+                    //    console.log(r);
+
+                    //    if(r.responseText == 1)
+                    //    {
+                    //        row.fadeOut(3000);
+                    //    }
+                    //    else{}
+
+                    //}
+
+
+
+
+                });
+            });
+        });
+
+
+
+    </script>
+
+
+
+}

@@ -1,0 +1,102 @@
+﻿@model IEnumerable<ThetaECommerceApp.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentMethod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDiscount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.MetaData)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentMethod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDiscount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.ModifiedBy)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.ModifiedDate)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.MetaData)
+            </td>*@
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm"><i class="bi bi-pencil"> Edit</i></a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm"><i class="bi bi-book"> Details</i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm"><i class="bi bi-trash"> Delete</i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

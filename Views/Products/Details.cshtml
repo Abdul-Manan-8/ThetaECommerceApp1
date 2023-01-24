@@ -1,0 +1,243 @@
+﻿@model ThetaECommerceApp.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="row">
+    <div class="col-6">
+        <h1>Image Galery</h1>
+
+        <div class="row">
+            <div class="col-12">
+
+
+                @{
+
+                    string[] AllImages = Model.Image.Split(',');
+
+                }
+                <img src="@AllImages[0]" class="largeimage" style="min-height:300px; max-height:500px; max-width:500px;" alt="" />
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+
+                @for (int i = 0; i < AllImages.Length; i++)
+                {
+                    <img src="@AllImages[i]" class="img-thumbnail smallimages" style="max-height:100px;" alt="" />
+
+                }
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+
+    <div class="col-6">
+        <h1>Details</h1>
+
+        <div>
+            <h4>Product</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.SellerId)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.SellerId)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.NoOfView)
+                </dt>
+                <dd class="col-sm-10 badge rounded-pill bg-secondary" id="count">
+                    @Html.DisplayFor(model => model.NoOfView)
+                </dd>
+                @*<dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Image)
+                </dt>*@
+                @*<dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Image)
+                </dd>*@
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Quantity)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CategoryId)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CategoryId)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ShortDescription)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ShortDescription)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.LongDescription)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.LongDescription)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DeliveryDays)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DeliveryDays)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DeliveryCharges)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DeliveryCharges)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Status)
+                </dd>
+                @*<dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.CreatedBy)
+                </dt>
+                <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.CreatedBy)
+                </dd>
+                <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.CreatedDate)
+                </dt>
+                <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.CreatedDate)
+                </dd>
+                <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.ModifiedBy)
+                </dt>
+                <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.ModifiedBy)
+                </dd>
+                <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+                </dt>
+                <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.ModifiedDate)
+                </dd>
+                <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.MetaData)
+                </dt>
+                <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.MetaData)
+                </dd>
+                <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.SeoData)
+                </dt>
+                <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.SeoData)
+                </dd>*@
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning btn-sm"><i class="bi bi-pencil"> Edit</i></a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+<div class"RC">
+</div>
+
+
+
+
+
+
+@section Scripts{
+
+    @*  <script>
+
+         $(function(){
+
+            $('#count').load('/Products/Count?id=@Model.Id');
+
+        });
+
+    </script>*@
+
+
+
+
+
+
+    <script>
+
+        $(function () {
+            $(".smallimages").click(function () {
+
+                var ClickedImage = $(this);
+
+                $(".largeimage").attr("src", ClickedImage.attr("src"));
+
+
+            });
+
+
+            //alert()
+            $.ajax({
+
+                url: '/Products/Count',
+                type: 'post',
+                data: { id: @Model.Id}
+
+
+
+
+
+
+
+
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+        });
+
+
+    </script>
+
+
+}

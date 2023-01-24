@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+    @if (!string.IsNullOrEmpty(Context.Session.GetString("UserName")))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/SystemUser/Details/@Context.Session.GetString("UserId")" title="Manage">Hello @Context.Session.GetString("UserName")</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/SystemUsers/Logout">Logout</a>
+            @*<form  class="form-inline" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        </form>*@
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Register</a>
+                <div class="dropdown-menu border-0">
+                    <a class="dropdown-item" asp-area="" asp-controller="Customers" asp-action="Create">As a Customer</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Sellers" asp-action="Create">As a Seller</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/SystemUsers/Login">Login</a>
+        </li>
+    }
+</ul>
