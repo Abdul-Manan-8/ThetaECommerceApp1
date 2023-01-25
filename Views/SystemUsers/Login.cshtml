@@ -3,12 +3,14 @@
 @{
     ViewData["Title"] = "Login";
 
-    if(ViewBag.Error != null)
-    {
+ 
         var a = ViewBag.Error;
-    }
 }
-<h1>@a</h1>
+   @if(ViewBag.Error != null)
+    {
+<h1 class="alert-danger">@a</h1>
+    }
+
 <h1>Login</h1>
 
 <h4>SystemUser</h4>

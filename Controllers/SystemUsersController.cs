@@ -208,7 +208,16 @@ namespace ThetaECommerceApp.Controllers
                     MailObj.Body = "Greeting Mr." + user.UserName + ",<br><br>" +
                         "Your Retrieve password request is accepted. here is your password " + user.Password + ". Do not share this password to anyone. feel free to contact us if you need more help.<br><br>" +
                         "Have a nice day.<br><br>Regards,<br> <span style='color:green;'>ECommerse Team</span>";
-                    //MailObj.To.Add(SystemUser.Email);
+                    if (user.Type == 4)
+                    {
+                        var email = (_context.Customers.Where(a => a.SystemUserId == user.Id).FirstOrDefault());
+                        MailObj.To.Add(email.Email);
+                    }
+                    if (user.Type == 3)
+                    {
+                        var email = (_context.Sellers.Where(a => a.SystemUserId == user.Id).FirstOrDefault());
+                        MailObj.To.Add(email.Email);
+                    }
                     MailObj.Bcc.Add("abdul124manan@gmai.com");
 
                     MailObj.From = new MailAddress("students@thetademos.com", "ECommerse Team");
@@ -265,7 +274,7 @@ namespace ThetaECommerceApp.Controllers
 
                     MailObj.Subject = "Reset Password for <b>" + user.UserName + "</b> from ECommerce webapplication";
                     MailObj.Body = "Greeting Mr." + user.UserName + ",<br><br>" +
-                        "Your Reset password request is accepted. Click the link " + _he + user.RecoveryCode + " to change password, this link is temporary. Do not share this to anyone. feel free to contact us if you need more help.<br><br>" +
+                        "Your Reset password request is accepted. Click the link " + /*<a href= "_he/SystemUser/ResetPassword?user.RecoveryCode"/>*/ " to change password, this link is temporary. Do not share this to anyone. feel free to contact us if you need more help.<br><br>" +
                         "Have a nice day.<br><br>Regards,<br> <span style='color:green;'>ECommerse Team</span>";
                     if (user.Type == 4)
                     {
@@ -336,7 +345,7 @@ namespace ThetaECommerceApp.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Login", "SystemUsers");
+            return RedirectToAction("Index", "Home");
         }
 
 

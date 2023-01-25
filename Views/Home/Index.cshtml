@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var Top = ViewBag.TopProduct;
 }
 
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -33,27 +34,13 @@
 <div>
     <p class="h4 text-center">We are dealing with all kind product since 2023.</p>
 </div>
-
-<div id="featured item">
-    card
+@*@foreach(var T in Top){
+<div class="card" style="width: 18rem;">
+  <img src="@T.Image" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">@T.Name</h5>
+    <p class="card-text">@T.ShortDiscription</p>
+    <a href="/Products/Detail?id=@T.Id" class="btn btn-primary">Detail</a>
+  </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}*@
