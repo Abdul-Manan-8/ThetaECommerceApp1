@@ -122,7 +122,7 @@ namespace ThetaECommerceApp.Controllers
                 }
 
             }
-            return RedirectToAction("RegisterSuccess", "HomeController");
+            return RedirectToAction("RegisterSuccess", "Home");
         }
 
         // GET: Customers/Edit/5

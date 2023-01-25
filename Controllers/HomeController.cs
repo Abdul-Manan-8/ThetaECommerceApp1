@@ -26,8 +26,7 @@ namespace ThetaECommerceApp.Controllers
 
         public IActionResult AboutUs()
         {
-            //return View();
-            return RedirectToAction("Create", "CustomerController");
+            return View();
         }
 
         public IActionResult ContactUs()
